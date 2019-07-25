@@ -1,0 +1,47 @@
+<div class='card'>
+    <div *ngIf='!cartProducts || !cartProducts.length'>
+     <h2>Cart is Empty</h2>
+    </div>
+    <div class='table-responsive'>
+        <table class='table'
+               *ngIf='cartProducts && cartProducts.length'>
+          <thead>
+            <tr>
+              <th>
+                <button class='btn btn-primary'
+                        (click)='clearCart()'>
+                  Clear Cart
+                </button>
+              </th>
+              <th>Product</th>
+              <th>Code</th>
+              <th>Price</th>
+              <th>Cart Qty</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let product of cartProducts'>
+              <td>
+                <img [src]='product.imageUrl'
+                     [title]='product.productName'
+                     [style.width.px]='imageWidth'
+                     [style.margin.px]='imageMargin'>
+              </td>
+              <td>
+                <a [routerLink]="['/products', product.productId]">
+                  {{ product.productName }}
+                </a>
+              </td>
+              <td>{{ product.productCode }}</td>
+              <td>{{ product.price | currency:'USD':'symbol':'1.2-2' }}</td>
+              <td>
+                {{product.stock}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    
+    </div>   
+</div>
+  
+ 
